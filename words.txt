@@ -1,0 +1,11 @@
+car
+man
+space
+chocolate
+red
+lamp
+bed
+shirt
+towel
+picture
+
