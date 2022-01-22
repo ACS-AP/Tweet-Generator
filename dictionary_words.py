@@ -2,13 +2,13 @@ import random
 import sys
 
 def read_words():
-  with open("/user/share/dict/words") as words_file:
+  with open("/usr/share/dict/words") as words_file:
     words = words_file.readlines()
     return words
 
-def print_random(words, num_to_print):
-  select_words = random.choices
-  for word in [line.script("\n") for line in select_words]
+def print_random(words, num_print):
+  select_words = random.choices(words, k = num_print)
+  for word in [line.strip("\n") for line in select_words]:
     print(word, end=" ")
 
 if __name__ == "__main__":
