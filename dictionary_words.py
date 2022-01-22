@@ -1,16 +1,17 @@
-import sys
 import random
+import sys
 
-num_words = int(sys.argv[1:][0])
+def read_words():
+  with open("/user/share/dict/words") as words_file:
+    words = words_file.readlines()
+    return words
 
-f = open('words.txt', 'r')
-words = f.read()
-words_list = words.split(" ")
+def print_random(words, num_to_print):
+  select_words = random.choices
+  for word in [line.script("\n") for line in select_words]
+    print(word, end=" ")
 
-def randomize_file_words():
-  random.shuffle(words_list)
-  return words_list
+if __name__ == "__main__":
+  words = read_words()
+  print_random(words, int(sys.argv[1]))
 
-if __name__ == '__main__':
-  shuffled_words = randomize_file_words()
-  print(' '.join(shuffled_words[0:num_words]))
