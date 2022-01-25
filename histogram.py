@@ -27,8 +27,9 @@ if __name__ == '__main__':
   file_name = sys.argv[1]
   word_check = sys.argv[2]
   f = open(file_name,'r', encoding='utf-8-sig')
-  blog_text = f.read()
-  clean_text = blog_text.replace(',','').replace('.','').replace('?','').replace("'",'').replace('"','').replace('-','')
+  total_text = f.read()
+
+  clean_text = total_text.replace(',','').replace('.','').replace('?','').replace("'",'').replace('"','').replace('-','')
   source_text = clean_text.split(' ')
   f.close()
   histogram(source_text)
