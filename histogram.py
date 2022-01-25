@@ -21,7 +21,7 @@ def word_frequency(word, source_text):
     else: 
       print("There is [" + str(dictionary[word]) + "] instances of " + str(word) +" unique words in the text.")
   else:
-    print("Word was not found")
+    print("Not found")
 
 if __name__ == '__main__':
   file_name = sys.argv[1]
