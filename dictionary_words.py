@@ -1,17 +1,51 @@
-import random
 import sys
 
-def read_words():
-  with open("/usr/share/dict/words") as words_file:
-    words = words_file.readlines()
-    return words
+def histogramDict(word_text):
+  dictionary = {}
+  for word in word_text:
+    if word in dictionary.keys():
+      dictionary[word] += 1 
+    else:
+      dictionary[word] = 1
+  return dictionary
 
-def print_random(words, num_print):
-  select_words = random.choices(words, k = num_print)
-  for word in [line.strip("\n") for line in select_words]:
-    print(word, end=" ")
+def histogramList(word_text):
+  word_list = []
+  for word in word_text:
+    for record in word_list:
+      if record[0] == word:
+        record[1] = record[1] + 1
+    else:
+      new_record = []
+      new_record.append(word)
+      new_record.append(1)
+      word_list.append(new_record)
+  print(word_list)
+ 
+def uniqueWords(word_text):
+  dictionary = histogramDict(word_text)
+  print("There are [" + str(len(dictionary)) + "] unique words in the text.")
 
-if __name__ == "__main__":
-  words = read_words()
-  print_random(words, int(sys.argv[1]))
+def wordFrequency(word, word_text):
+  dictionary = histogramDict(word_text)
+  if dictionary[word]:
+    if dictionary[word] > 1:
+      print("There are [" + str(dictionary[word]) + "] instances of " + str(word) +" unique words in the text.")
+    else: 
+      print("There is [" + str(dictionary[word]) + "] instances of " + str(word) +" unique words in the text.")
+  else:
+    print("Word was not found")
+
+if __name__ == '__main__':
+  file_name = sys.argv[1]
+  word_check = sys.argv[2]
+  f = open(file_name,'r', encoding='utf-8-sig')
+  blog_text = f.read()
+  clean_text = blog_text.replace(',','').replace('.','').replace('?','').replace("'",'').replace('"','').replace('-','')
+  word_text = clean_text.split(' ')
+  f.close()
+  histogramDict(word_text)
+  histogramList(word_text)
+  uniqueWords(word_text)
+  wordFrequency(word_check, word_text)
 

@@ -28,7 +28,6 @@ if __name__ == '__main__':
   word_check = sys.argv[2]
   f = open(file_name,'r', encoding='utf-8-sig')
   total_text = f.read()
-
   clean_text = total_text.replace(',','').replace('.','').replace('?','').replace("'",'').replace('"','').replace('-','')
   source_text = clean_text.split(' ')
   f.close()
