@@ -24,17 +24,20 @@ def histogramList(word_text):
  
 def uniqueWords(word_text):
   dictionary = histogramDict(word_text)
-  print("There are [" + str(len(dictionary)) + "] unique words in the text.")
+  print("There are " + str(len(dictionary)) + " in the text.")
 
 def wordFrequency(word, word_text):
+
   dictionary = histogramDict(word_text)
   if dictionary[word]:
     if dictionary[word] > 1:
-      print("There are [" + str(dictionary[word]) + "] instances of " + str(word) +" unique words in the text.")
+      print("There are " + str(dictionary[word]) + " instances of " + str(word) +" in the text.")
     else: 
-      print("There is [" + str(dictionary[word]) + "] instances of " + str(word) +" unique words in the text.")
+      print("There is " + str(dictionary[word]) + " instances of " + str(word) +" in the text.")
   else:
-    print("Word was not found")
+    print("Not Found")
+
+
 
 if __name__ == '__main__':
   file_name = sys.argv[1]
