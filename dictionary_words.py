@@ -1,51 +1,36 @@
 import sys
+import random
 
-def histogramDict(word_text):
-  dictionary = {}
-  for word in word_text:
-    if word in dictionary.keys():
-      dictionary[word] += 1 
-    else:
-      dictionary[word] = 1
-  return dictionary
-
-def histogramList(word_text):
-  word_list = []
-  for word in word_text:
-    for record in word_list:
-      if record[0] == word:
-        record[1] = record[1] + 1
-    else:
-      new_record = []
-      new_record.append(word)
-      new_record.append(1)
-      word_list.append(new_record)
-  print(word_list)
- 
-def uniqueWords(word_text):
-  dictionary = histogramDict(word_text)
-  print("There are [" + str(len(dictionary)) + "] unique words in the text.")
-
-def wordFrequency(word, word_text):
-  dictionary = histogramDict(word_text)
-  if dictionary[word]:
-    if dictionary[word] > 1:
-      print("There are [" + str(dictionary[word]) + "] instances of " + str(word) +" unique words in the text.")
-    else: 
-      print("There is [" + str(dictionary[word]) + "] instances of " + str(word) +" unique words in the text.")
+def readInFile(word_count, file_name):
+  if file_name == False:
+    f = open('words.txt','r')
   else:
-    print("Word was not found")
+    f = open(file_name, 'r')
+  word_list = f.readlines()
+  cleanUpList(word_count, word_list)
+
+def cleanUpList(word_count, word_list):
+  new_list = []
+  for word in word_list:
+    new_word = word.rstrip()
+    new_list.append(new_word)
+  generateSentance(word_count, new_list)
+
+def generateSentence(word_count, word_list):
+  list_length = len(word_list)
+  sentence_words = []
+  for i in range(word_count):
+    random_word = word_list[random.randint(0, list_length)]
+    sentence_words.append(random_word)
+  merged_words = " ".join(sentence_words)
+  output = merged_words + "."
+  print(output)
+
+
 
 if __name__ == '__main__':
-  file_name = sys.argv[1]
-  word_check = sys.argv[2]
-  f = open(file_name,'r', encoding='utf-8-sig')
-  blog_text = f.read()
-  clean_text = blog_text.replace(',','').replace('.','').replace('?','').replace("'",'').replace('"','').replace('-','')
-  word_text = clean_text.split(' ')
-  f.close()
-  histogramDict(word_text)
-  histogramList(word_text)
-  uniqueWords(word_text)
-  wordFrequency(word_check, word_text)
-
+  word_count = sys.argv[1]
+  if(sys.argv[2]):
+    readInFile(word_count, sys.argv[2])
+  else:
+    readInFile(word_count, False)
